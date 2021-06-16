@@ -1,3 +1,4 @@
+import 'package:bytebank/models/transferencias.dart';
 import 'package:bytebank/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -5,8 +6,15 @@ import 'package:provider/provider.dart';
 import 'models/saldo-model.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => Saldo(800),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => Saldo(800),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => Transferencias(),
+      )
+    ],
     child: MyApp(),
   ));
 }

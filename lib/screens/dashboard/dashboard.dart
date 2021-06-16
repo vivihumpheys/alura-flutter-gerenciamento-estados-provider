@@ -1,8 +1,7 @@
-import 'package:bytebank/models/saldo-model.dart';
 import 'package:bytebank/screens/dashboard/saldo-card.dart';
 import 'package:bytebank/screens/deposito/formulario.dart';
+import 'package:bytebank/screens/transferencia/formulario.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class Dashboard extends StatelessWidget {
   @override
@@ -11,24 +10,44 @@ class Dashboard extends StatelessWidget {
       appBar: AppBar(
         title: Text('Bytebank'),
       ),
-      body: ListView(children: <Widget>[
-        Align(
-          alignment: Alignment.topCenter,
-          child: SaldoCard(),
-        ),
-        ElevatedButton(
-            child: Text('Receber depósito'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return FormularioDeposito();
-                  },
-                ),
-              );
-            }),
-      ]),
+      body: ListView(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topCenter,
+            child: SaldoCard(),
+          ),
+          ButtonBar(
+            alignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  child: Text('Receber depósito'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return FormularioDeposito();
+                        },
+                      ),
+                    );
+                  }),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return FormularioTransferencia();
+                      },
+                    ),
+                  );
+                },
+                child: Text('Nova Transferência'),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
